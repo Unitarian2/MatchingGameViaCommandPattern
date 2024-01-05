@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IconSwappable : MonoBehaviour
 {
     int iconIndex;
     Sprite unselectedImage;
     Sprite selectedImage;
+    bool isSelected = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ToggleSelection()
     {
-        
+        if (isSelected)
+        {
+            gameObject.GetComponent<Image>().sprite = unselectedImage;
+            isSelected = false;
+        }
+        else
+        {
+            gameObject.GetComponent<Image>().sprite = selectedImage;
+            isSelected = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetupIconElement(int iconIndex,Sprite unselectedImage, Sprite selectedImage)
     {
-        
+        this.iconIndex = iconIndex;
+        this.unselectedImage = unselectedImage;
+        this.selectedImage = selectedImage;
     }
 }
