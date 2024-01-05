@@ -7,7 +7,7 @@ public class IconSwapper : MonoBehaviour
 {
     public void Swap(IconSwappable icon1,IconSwappable icon2)
     {
-        parentObject.transform.GetChild(0).gameObject.GetComponent<HorizontalLayoutGroup>().enabled = false;
+        //parentObject.transform.GetChild(0).gameObject.GetComponent<HorizontalLayoutGroup>().enabled = false;
         Vector3 posIcon1 = icon1.gameObject.transform.position;
         Vector3 posIcon2 = icon2.gameObject.transform.position;
 
