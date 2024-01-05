@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 3076163762035086988}
   - component: {fileID: 6185504579515343717}
   - component: {fileID: 7904869683755033019}
+  - component: {fileID: 1593827369482396885}
   m_Layer: 5
   m_Name: RowElementIcon4
   m_TagString: Untagged
@@ -154,6 +155,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1593827369482396885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597198415624902534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517fcf30e468a1d4e90352367167e389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2504067941384064502
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +178,7 @@ GameObject:
   - component: {fileID: 4224847545944657815}
   - component: {fileID: 3690518560357155012}
   - component: {fileID: 4483509906202322650}
+  - component: {fileID: 4383216044646713840}
   m_Layer: 5
   m_Name: RowElementIcon
   m_TagString: Untagged
@@ -231,6 +245,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4383216044646713840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504067941384064502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517fcf30e468a1d4e90352367167e389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3055604108854802437
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +268,7 @@ GameObject:
   - component: {fileID: 6608621657122093785}
   - component: {fileID: 9031214111222106490}
   - component: {fileID: 5926793678556958299}
+  - component: {fileID: 7760657367020781952}
   m_Layer: 5
   m_Name: RownElementIcon2
   m_TagString: Untagged
@@ -308,6 +335,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7760657367020781952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055604108854802437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517fcf30e468a1d4e90352367167e389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4532677558263891438
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +696,7 @@ GameObject:
   - component: {fileID: 3312267939360142323}
   - component: {fileID: 477333506547956346}
   - component: {fileID: 3702357598777011587}
+  - component: {fileID: 2334121311281377083}
   m_Layer: 5
   m_Name: RowElementIcon3
   m_TagString: Untagged
@@ -723,3 +763,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2334121311281377083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213180195194443373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517fcf30e468a1d4e90352367167e389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

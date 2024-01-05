@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class IconSwappable : MonoBehaviour
 {
+    int iconIndex;
+    Sprite unselectedImage;
+    Sprite selectedImage;
+
     // Start is called before the first frame update
     void Start()
     {
