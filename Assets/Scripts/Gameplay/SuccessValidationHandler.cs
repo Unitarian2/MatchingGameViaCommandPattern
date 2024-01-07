@@ -9,6 +9,7 @@ public class SuccessValidationHandler
 {
     private List<IconSwappable> board;
     private IconSwappable[,] boardMatrix;
+    private List<IconSwappable> boardSuccessfulElements;
 
     public SuccessValidationHandler(List<IconSwappable> board)
     {
@@ -46,7 +47,7 @@ public class SuccessValidationHandler
         int rows = boardMatrix.GetLength(0);
         int cols = boardMatrix.GetLength(1);
         bool found = false;
-
+        
 
         for (int i = 0; i < rows; i++)
         {
@@ -91,6 +92,74 @@ public class SuccessValidationHandler
         }
         return false;
 
+    }
+
+    public List<IconSwappable> FindSuccessfulElements()
+    {
+        //Board matrix'ini oluþturuyoruz.
+        FillBoardMatrix();
+
+        int rows = boardMatrix.GetLength(0);
+        int cols = boardMatrix.GetLength(1);
+        bool found = false;
+        boardSuccessfulElements = new List<IconSwappable>();
+
+        foreach (IconSwappable icon in board)
+        {
+            found = false;
+
+            for (int i = 0; i < rows; i++)
+            {
+                if (found) break;
+
+                for (int j = 0; j < cols; j++)
+                {
+                    if (boardMatrix[i, j] == icon)
+                    {
+                        //Aþaðýdaki kontrol ettiðimiz elemanýn kuzey,güney,doðu,batý elemaný ile(varsa) iconIndex'i eþit mi diye kontrol ediyoruz.
+                        if (i - 1 >= 0)
+                        {
+                            if (boardMatrix[i - 1, j].IconIndex == icon.IconIndex)
+                            {
+                                AddSuccessfulElement(icon);
+                            }
+                        }
+                        if (i + 1 <= rows - 1)
+                        {
+                            if (boardMatrix[i + 1, j].IconIndex == icon.IconIndex)
+                            {
+                                AddSuccessfulElement(icon);
+                            }
+                        }
+                        if (j - 1 >= 0)
+                        {
+                            if (boardMatrix[i, j - 1].IconIndex == icon.IconIndex)
+                            {
+                                AddSuccessfulElement(icon);
+                            }
+                        }
+                        if (j + 1 <= cols - 1)
+                        {
+                            if (boardMatrix[i, j + 1].IconIndex == icon.IconIndex)
+                            {
+                                AddSuccessfulElement(icon);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        return boardSuccessfulElements;
+    }
+
+    private void AddSuccessfulElement(IconSwappable successfulIcon)
+    {
+        if (!boardSuccessfulElements.Contains(successfulIcon))
+        {
+            boardSuccessfulElements.Add(successfulIcon);
+        }
     }
 
     private void FillBoardMatrix()

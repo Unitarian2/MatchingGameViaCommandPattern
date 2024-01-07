@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
         Init();
         FillElementData();
         InitializeElements();
-
+        StartGameValidationProcess();
     }
 
     private void InitializeElements()
@@ -49,14 +49,45 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void StartGameProcess()
+    public void StartGameValidationProcess()
     {
+        //Find Successful Icons
+        SuccessValidationHandler successValidationHandler = new(GetIconElementsList());
+        List<IconSwappable> successfulIcons = successValidationHandler.FindSuccessfulElements();
 
+        //Patlayacak icon'lar var mý kontrol ediyoruz.
+        if(successfulIcons.Count > 0)
+        {
+            //Successful olanlarý patlatýp yeni iconlar spawn ediyoruz
+            GetComponent<IconRespawnHandler>().RespawnProcess(successfulIcons, OnRespawnCompleted);
+        }
+        else
+        {
+            BurdanDevam();
+        }
+        
+    }
+    private void OnRespawnCompleted()
+    {
+        //Respawn Complete olunca tekrar patlayabilecek icon var mý kontrol ediyoruz ta ki patlayacak icon kalmayana kadar.
+        StartGameValidationProcess();
+        //Debug.LogWarning("OnRespawnCompleted");
     }
 
+    private void BurdanDevam()
+    {
+        Debug.LogWarning("Buradan Devam'a geldi");
+    }
+
+    
     public List<IconSwappable> GetIconElementsList()
     {
         return iconElementsList;
+    }
+
+    public List<IconSwappableSO> GetIconElementsSoList()
+    {
+        return iconElementsSoList;
     }
 
 
