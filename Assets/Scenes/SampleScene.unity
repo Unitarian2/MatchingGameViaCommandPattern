@@ -525,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104246c9c00ea5941ba53e80ef5fd4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalParentObjectList: []
 --- !u!114 &1010038380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,8 +959,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2086667785}
   - {fileID: 2061737047}
+  - {fileID: 2086667785}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,8 +10,11 @@ public class IconSwapper : MonoBehaviour
     [SerializeField] private List<GameObject> horizontalParentObjectList;
 
     bool isSwapping;
-    public void Swap(IconSwappable icon1,IconSwappable icon2)
+    bool isUndoSwap;
+
+    public void Swap(IconSwappable icon1,IconSwappable icon2,bool isUndoSwap)
     {
+        this.isUndoSwap = isUndoSwap;
         StartCoroutine(SwapPosition(icon1, icon2));
     }
 
@@ -50,7 +53,8 @@ public class IconSwapper : MonoBehaviour
 
     private void SwapLayoutPosition(IconSwappable icon1, IconSwappable icon2, Vector2 icon1AnchoredPos, Vector2 icon2AnchoredPos)
     {
-        bool isValidSwap = IsValidSwap(icon1, icon2);//Deðiþimi yapmadan önce deðiþim sonunda patlama olacak mý onun bilgisini saklýyoruz
+        //Deðiþimi yapmadan önce deðiþim sonunda patlama olacak mý onun bilgisini saklýyoruz. Undo yapýlmýþ bir Swap yapýrsak her türlü true olmalý yoksa geriye doðru gitmeye baþlýyoruz.
+        bool isValidSwap = IsValidSwap(icon1, icon2) || isUndoSwap;
 
         foreach (GameObject child in horizontalParentObjectList)
         {
@@ -97,9 +101,9 @@ public class IconSwapper : MonoBehaviour
 
     public bool IsValidSwap(IconSwappable icon1, IconSwappable icon2)
     {
-        bool isValid = true;
+        SuccessValidationHandler successValidationHandler = new SuccessValidationHandler(GameManager.Instance.GetIconElementsList());
 
-        return isValid;
+        return successValidationHandler.IsValidSwap(icon1, icon2);
     }
 
     public int FindChildIndex(Transform parent,GameObject targetObject)
