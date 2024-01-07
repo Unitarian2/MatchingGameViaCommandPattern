@@ -96,6 +96,11 @@ public class IconSwapper : MonoBehaviour
         {
             CommandInvoker.UndoCommand();
         }
+        else
+        {
+            //Oyunun patlamalara baþlamasý için gameManager'da state deðiþiyoruz.
+            GameManager.Instance.StartGameValidationProcess();
+        }
 
     }
 
