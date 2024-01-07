@@ -27,6 +27,6 @@ public class SwapCommand : ICommand
 
     public void Undo()
     {
-        swapper.Swap(iconSwappable2, iconSwappable1);
+        swapper.Swap(iconSwappable1, iconSwappable2);
     }
 }

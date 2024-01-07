@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private List<IconSwappable> iconElementsList;
     [SerializeField] private List<IconSwappableSO> iconElementsSoList;
@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
         {
             iconElement.InitIconElement();
         }
+    }
+
+    public void StartGameProcess()
+    {
+
     }
 
     
