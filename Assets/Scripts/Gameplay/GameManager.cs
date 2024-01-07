@@ -54,5 +54,10 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    
+    public List<IconSwappable> GetIconElementsList()
+    {
+        return iconElementsList;
+    }
+
+
 }

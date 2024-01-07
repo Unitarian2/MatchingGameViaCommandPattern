@@ -17,16 +17,16 @@ public class SwapCommand : ICommand
 
     public void Execute()
     {
-        swapper.Swap(iconSwappable1, iconSwappable2);
+        swapper.Swap(iconSwappable1, iconSwappable2, false);
     }
 
     public void Redo()
     {
-        swapper.Swap(iconSwappable1, iconSwappable2);
+        swapper.Swap(iconSwappable1, iconSwappable2, false);
     }
 
     public void Undo()
     {
-        swapper.Swap(iconSwappable1, iconSwappable2);
+        swapper.Swap(iconSwappable1, iconSwappable2, true);
     }
 }
