@@ -59,10 +59,10 @@ public class InputManager : MonoBehaviour
         {
             return;
         }
-        if (iconSwapper.IsValidSwap(iconSwappable1, iconSwappable2))
-        {
-            ICommand command = new SwapCommand(iconSwapper, iconSwappable1, iconSwappable2);
-            CommandInvoker.ExecuteCommand(command);
-        }
+
+        ICommand command = new SwapCommand(iconSwapper, iconSwappable1, iconSwappable2);
+        CommandInvoker.ExecuteCommand(command);
+        
+        
     }
 }

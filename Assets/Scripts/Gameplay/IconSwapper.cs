@@ -1,24 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IconSwapper : MonoBehaviour
 {
     [SerializeField] private List<GameObject> horizontalParentObjectList;
+
+    bool isSwapping;
     public void Swap(IconSwappable icon1,IconSwappable icon2)
     {
+        StartCoroutine(SwapPosition(icon1, icon2));
+    }
+
+    IEnumerator SwapPosition(IconSwappable icon1, IconSwappable icon2)
+    {
+        float duration = 0.5f;
+        isSwapping = true;
+
+        Vector2 startPosObject1 = icon1.gameObject.transform.position;
+        Vector2 startPosObject2 = icon2.gameObject.transform.position;
+
+        Vector2 icon1AnchoredPos = icon1.gameObject.GetComponent<RectTransform>().anchoredPosition;
+        Vector2 icon2AnchoredPos = icon2.gameObject.GetComponent<RectTransform>().anchoredPosition;
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+
+            icon1.gameObject.transform.position = Vector2.Lerp(startPosObject1, startPosObject2, t);
+            icon2.gameObject.transform.position = Vector2.Lerp(startPosObject2, startPosObject1, t);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ýþlem bittiðinde pozisyonlarý tekrar doðru yerleþtir
+        icon1.gameObject.transform.position = startPosObject2;
+        icon2.gameObject.transform.position = startPosObject1;
+
+        isSwapping = false;
+
+        SwapLayoutPosition(icon1, icon2, icon1AnchoredPos, icon2AnchoredPos);
+    }
+
+    private void SwapLayoutPosition(IconSwappable icon1, IconSwappable icon2, Vector2 icon1AnchoredPos, Vector2 icon2AnchoredPos)
+    {
+        bool isValidSwap = IsValidSwap(icon1, icon2);//Deðiþimi yapmadan önce deðiþim sonunda patlama olacak mý onun bilgisini saklýyoruz
+
         foreach (GameObject child in horizontalParentObjectList)
         {
             child.transform.GetChild(0).gameObject.GetComponent<HorizontalLayoutGroup>().enabled = false;
         }
-
-        //Vector3 posIcon1 = icon1.gameObject.transform.position;
-        //Vector3 posIcon2 = icon2.gameObject.transform.position;
-
-        //icon1.gameObject.transform.position = posIcon2;
-        //icon2.gameObject.transform.position = posIcon1;
-
 
         #region SwapHorizontalElements
         //IconSwappable gameobject'inin bir ara parent'ý var horizontal layout grouptan etkilenen bu parent
@@ -47,6 +84,14 @@ public class IconSwapper : MonoBehaviour
             child.transform.GetChild(0).gameObject.GetComponent<HorizontalLayoutGroup>().enabled = true;
         }
 
+        icon1.gameObject.GetComponent<RectTransform>().anchoredPosition = icon1AnchoredPos;
+        icon2.gameObject.GetComponent<RectTransform>().anchoredPosition = icon2AnchoredPos;
+
+        //Patlama olmayacaksa hiç beklemeden Undo yapýyoruz.
+        if (!isValidSwap)
+        {
+            CommandInvoker.UndoCommand();
+        }
 
     }
 
