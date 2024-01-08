@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class InputManager : MonoBehaviour
 {
     IconSwapper iconSwapper;
+    HistoryUIHandler historyUIHandler;
 
     IconSwappable firstSelectedIcon;
     IconSwappable secondSelectedIcon;
@@ -17,10 +18,8 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         iconSwapper = gameObject.GetComponent<IconSwapper>();
+        historyUIHandler = gameObject.GetComponent<HistoryUIHandler>(); 
         firstSelectedIcon = null; secondSelectedIcon = null;
-
-        
-
 
         //Gameboard'daki buttonlarý çek
         Button[] buttons = parentObject.GetComponentsInChildren<Button>(true);
@@ -36,7 +35,7 @@ public class InputManager : MonoBehaviour
     
     private void OnButtonClick(GameObject clickedObject)
     {
-        Debug.LogWarning("Clicked Object" + clickedObject.name + " / " + clickedObject.GetInstanceID());
+        //Debug.LogWarning("Clicked Object" + clickedObject.name + " / " + clickedObject.GetInstanceID());
         
         if (firstSelectedIcon == null)
         {
@@ -46,13 +45,13 @@ public class InputManager : MonoBehaviour
         else if(secondSelectedIcon == null)
         {
             secondSelectedIcon = clickedObject.GetComponent<IconSwappable>();
-            SwapIconCommand(iconSwapper, firstSelectedIcon,secondSelectedIcon);
+            SwapIconCommand(historyUIHandler,iconSwapper, firstSelectedIcon,secondSelectedIcon);
             firstSelectedIcon.ToggleSelection();
             firstSelectedIcon = null; secondSelectedIcon = null;
         }
     }
 
-    private void SwapIconCommand(IconSwapper iconSwapper, IconSwappable iconSwappable1, IconSwappable iconSwappable2)
+    private void SwapIconCommand(HistoryUIHandler historyUIHandler, IconSwapper iconSwapper, IconSwappable iconSwappable1, IconSwappable iconSwappable2)
     {
         //Herhangi biri null ise çalýþtýrmýyoruz.
         if (iconSwapper == null || iconSwappable1 == null || iconSwappable2 == null)
@@ -60,7 +59,7 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        ICommand command = new SwapCommand(iconSwapper, iconSwappable1, iconSwappable2);
+        ICommand command = new SwapCommand(historyUIHandler, iconSwapper, iconSwappable1, iconSwappable2);
         CommandInvoker.ExecuteCommand(command);
         
         
