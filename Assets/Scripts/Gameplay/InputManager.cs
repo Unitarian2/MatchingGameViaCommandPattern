@@ -42,12 +42,18 @@ public class InputManager : MonoBehaviour
             firstSelectedIcon = clickedObject.GetComponent<IconSwappable>();
             firstSelectedIcon.ToggleSelection();
         }
-        else if(secondSelectedIcon == null)
+        else if(secondSelectedIcon == null && clickedObject.GetComponent<IconSwappable>() != firstSelectedIcon)
         {
             secondSelectedIcon = clickedObject.GetComponent<IconSwappable>();
             SwapIconCommand(historyUIHandler,iconSwapper, firstSelectedIcon,secondSelectedIcon);
             firstSelectedIcon.ToggleSelection();
             firstSelectedIcon = null; secondSelectedIcon = null;
+        }
+        else if(clickedObject.GetComponent<IconSwappable>() == firstSelectedIcon)
+        {
+            firstSelectedIcon = clickedObject.GetComponent<IconSwappable>();
+            firstSelectedIcon.ToggleSelection();
+            firstSelectedIcon = null;
         }
     }
 
