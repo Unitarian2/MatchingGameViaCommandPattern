@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class SwapCommand : ICommand
 {
-    IconSwapper swapper;
-    IconSwappable iconSwappable1;
-    IconSwappable iconSwappable2;
+    public IconSwapper Swapper {get; private set;}
+    public IconSwappable IconSwappable1 { get; private set; }
+    public IconSwappable IconSwappable2 { get; private set; }
+    public HistoryUIHandler HistoryUIHandler { get; private set; }
 
-    public SwapCommand(IconSwapper swapper, IconSwappable iconSwappable1, IconSwappable iconSwappable2)
+    public SwapCommand(HistoryUIHandler historyUIHandler, IconSwapper swapper, IconSwappable iconSwappable1, IconSwappable iconSwappable2)
     {
-        this.swapper = swapper;
-        this.iconSwappable1 = iconSwappable1;
-        this.iconSwappable2 = iconSwappable2;
+        this.Swapper = swapper;
+        this.IconSwappable1 = iconSwappable1;
+        this.IconSwappable2 = iconSwappable2;
+        this.HistoryUIHandler = historyUIHandler;
     }
 
     public void Execute()
     {
-        swapper.Swap(iconSwappable1, iconSwappable2, false);
+        Swapper.Swap(IconSwappable1, IconSwappable2, false);
+        HistoryUIHandler.UpdateHistoryUI(false);
     }
 
     public void Redo()
     {
-        swapper.Swap(iconSwappable1, iconSwappable2, false);
+        Swapper.Swap(IconSwappable1, IconSwappable2, false);
+        HistoryUIHandler.UpdateHistoryUI(false);
     }
 
     public void Undo()
     {
-        swapper.Swap(iconSwappable2, iconSwappable1, true);
+        Swapper.Swap(IconSwappable2, IconSwappable1, true);
+        HistoryUIHandler.UpdateHistoryUI(true);
     }
 }
