@@ -12,7 +12,7 @@ Command Pattern kullanılarak geliştirilmiş basit bir eşleştirme oyununu iç
 <b>IconRespawnHandler.cs =></b> Bu sınıf verilen hücrelere yeni rastgele ikonlar spawn eder. respawnCompletedCallback Action'ı ile bu işlemin bitişi tespit edilebilir.<br>
 <b>IconSwappable.cs =></b> Masadaki her hücrenin Gameobject'inde bu sınıf eklidir. Bir hücre için frontend tarafında gerekli tüm data ve methodlar bu sınıf içerisindedir. Hangi hücrede hangi icon tipi olduğu IconIndex üzerinden belirlenir.<br>
 <b>IconSwapper.cs =></b> Verilen iki hücrenin icon'larını yer değiştirir. Bunu yaparken önce görsel olarak konumların güncellenmesi animasyonunu çalıştırdıktan sonra,Horizontal Layout içerisinde childindex'ler üzerinden konumları da günceller. Swap sonrası geçerli eşleşme gerçekleşecekse GameManager içerisindeki StartGameValidationProcess methodunu çağırarak eşleşme sürecini başlatır.<br>
-<b>InputManager.cs =></b> Oyuncu kontrollerini içerir. Masa üzerindeki hücrelerin seçimi işlemlerini gerçekleştirir. 2. hücre seçildiğinde swap işlemleri başlar. Swap işlemleri Command Pattern'e uygun olarak CommandInvoker üzerinden başlatılır.
+<b>InputManager.cs =></b> Oyuncu kontrollerini içerir. Masa üzerindeki hücrelerin seçimi işlemlerini gerçekleştirir. 2. hücre seçildiğinde swap işlemleri başlar. Swap işlemleri Command Pattern'e uygun olarak CommandInvoker üzerinden başlatılır.<br>
 <b>SuccessValidationHandler.cs =></b> Eşleşme kurallarını içeren sınıftır. Bu sınıftan nesne oluştururken Consturctor'da masadaki hücrelerin bir listesi verilir. Bu sınıf, listeyi bir matrix'e çevirerek doğru eşleşmeleri tespit eder.
 
 ---GameManager.cs---<br>
