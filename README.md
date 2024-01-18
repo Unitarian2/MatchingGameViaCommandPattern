@@ -8,7 +8,7 @@ Command Pattern kullanılarak geliştirilmiş basit bir eşleştirme oyununu iç
 <b>SwapCommand.cs =></b> Bu prototip için oluşturulmuş, iki objenin konumunu swap etmek için kullanılan bir command'dir. IconSwapper sınıfı üzerinden command swap işlemlerini gerçekleştirir. HistoryUIHandler üzerinden UI günceller.<br><br>
 
 ---Gameplay Classes---<br>
-<b>GameBoardSetupManager.cs =></b> iconElementsList içerisindeki her IconSwappable nesnesine rastgele bir icon yüklemesi yapar. Masanın oyun başladığındaki kurulma işlemlerini gerçekleştirir.<br>
+<b>GameBoardSetupManager.cs =></b> Verilen liste içerisindeki her IconSwappable nesnesine rastgele bir icon yüklemesi yapar. Geriye kullanıma ve frontend'e aktarıma hazır bir IconSwappable listesi döndürür.<br>
 <b>IconRespawnHandler.cs =></b> Bu sınıf verilen hücrelere yeni rastgele ikonlar spawn eder. respawnCompletedCallback Action'ı ile bu işlemin bitişi tespit edilebilir.<br>
 <b>IconSwappable.cs =></b> Masadaki her hücrenin Gameobject'inde bu sınıf eklidir. Bir hücre için frontend tarafında gerekli tüm data ve methodlar bu sınıf içerisindedir. Hangi hücrede hangi icon tipi olduğu IconIndex üzerinden belirlenir.<br>
 <b>IconSwapper.cs =></b> Verilen iki hücrenin icon'larını yer değiştirir. Bunu yaparken önce görsel olarak konumların güncellenmesi animasyonunu çalıştırdıktan sonra,Horizontal Layout içerisinde childindex'ler üzerinden konumları da günceller. Swap sonrası geçerli eşleşme gerçekleşecekse GameManager içerisindeki StartGameValidationProcess methodunu çağırarak eşleşme sürecini başlatır.<br>
